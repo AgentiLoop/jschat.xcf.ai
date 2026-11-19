@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jschat-xcf-ai",
+  "main": "src/index.js",
+  "compatibility_date": "2025-09-01",
+  "routes": [{ "pattern": "jschat.xcf.ai", "custom_domain": true }],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "none",
+    "not_found_handling": "none"
+  },
+  "vars": {
+    // WebAuthn relying-party id — must equal the hostname users browse to (main.swift --rp-id)
+    "RP_ID": "jschat.xcf.ai",
+    // Username that is auto-promoted to admin after it registers a passkey (main.swift --admin)
+    "ADMIN_USERNAME": "XCF Admin"
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "CHAT_SERVER", "class_name": "ChatServer" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ChatServer"] }],
+  "r2_buckets": [{ "binding": "UPLOADS", "bucket_name": "jschat-uploads" }],
+  "observability": { "enabled": true }
+}

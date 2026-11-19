@@ -1,0 +1,17 @@
+{
+  "name": "jschat.xcf.ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "JavaScript / Cloudflare Workers port of xcf-chat (ChatServer + MultiPeerChatCore + DogTagKit)",
+  "scripts": {
+    "dev": "wrangler dev --var RP_ID:localhost",
+    "deploy": "wrangler deploy",
+    "extract-admin": "node scripts/extract-admin-content.mjs",
+    "test": "node --test test/*.test.mjs",
+    "e2e": "node test/e2e.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

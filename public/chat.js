@@ -1038,7 +1038,12 @@ class ChatClient {
                 const isOwn = message.sender === this.username;
                 messageEl.className = `message ${isOwn ? 'own' : 'other'}`;
                 
-                const time = new Date(message.timestamp).toLocaleTimeString([], {
+                const sentAt = new Date(message.timestamp);
+                const time = sentAt.toLocaleDateString([], {
+                    month: 'short',
+                    day: 'numeric',
+                    ...(sentAt.getFullYear() !== new Date().getFullYear() ? { year: 'numeric' } : {})
+                }) + ' ' + sentAt.toLocaleTimeString([], {
                     hour: '2-digit',
                     minute: '2-digit'
                 });

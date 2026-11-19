@@ -21,6 +21,5 @@
     "bindings": [{ "name": "CHAT_SERVER", "class_name": "ChatServer" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ChatServer"] }],
-  "r2_buckets": [{ "binding": "UPLOADS", "bucket_name": "jschat-uploads" }],
   "observability": { "enabled": true }
 }

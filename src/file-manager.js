@@ -53,6 +53,7 @@ export class ChatFileManager {
   }
 
   async saveUploadedFile(data, originalFileName, mimeType) {
+    if (!this.bucket) throw new FileError('File uploads are not enabled on this server (R2 bucket not configured).');
     if (data.byteLength > maxFileSize) throw new FileError(FILE_ERRORS.fileTooLarge);
     if (!allowedFileTypes.includes(mimeType)) throw new FileError(FILE_ERRORS.unsupportedFileType);
 
@@ -72,13 +73,13 @@ export class ChatFileManager {
   }
 
   async getFileData(attachment) {
-    const obj = await this.bucket.get(attachment.fileName);
+    const obj = this.bucket ? await this.bucket.get(attachment.fileName) : null;
     if (!obj) throw new FileError(FILE_ERRORS.fileNotFound);
     return obj.arrayBuffer();
   }
 
   async getThumbnailData(attachment) {
-    if (!attachment.thumbnailPath) return null;
+    if (!attachment.thumbnailPath || !this.bucket) return null;
     const obj = await this.bucket.get(attachment.thumbnailPath);
     return obj ? obj.arrayBuffer() : null;
   }

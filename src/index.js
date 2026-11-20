@@ -11,6 +11,7 @@ const STATIC_ROUTES = {
   '/webauthnui.js': '/webauthnui.js',
   '/emoji.js': '/emoji.js',
   '/style.css': '/style.css',
+  '/chat-preview.png': '/chat-preview.png',
   '/webauthn.css': '/webauthn.css',
   '/hybrid-webauthn-test.html': '/hybrid-webauthn-test.html',
   '/webauthn-super-test.html': '/webauthn-super-test.html',
